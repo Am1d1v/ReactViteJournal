@@ -1,10 +1,8 @@
 import './JournalItem.css'
 
-function JournalItem() {
+function JournalItem(props) {
 
-    const title = 'Title';
-    const date = new Date();
-    const text = 'text';
+    const {title, text, date} = props;
 
     return (
         <div className="journal-item">
