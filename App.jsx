@@ -1,5 +1,7 @@
 import './App.css'
 import Button from './components/Button/Button';
+import JournalItem from './components/JournalItem/JournalItem';
+
 
 function App() {
 
@@ -7,6 +9,7 @@ function App() {
     <>
       <h1>Some Title</h1>
       <Button />
+      <JournalItem />
     </>
   )
 }

@@ -1,10 +1,11 @@
+import './Button.css'
 
 
 const Button = () => {
 
 
     return (
-        <button>Click</button>
+        <button className='button accent'>Click</button>
     )
 }
 export default Button;
