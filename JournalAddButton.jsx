@@ -1,13 +1,12 @@
 import './JournalAddButton.css';
 import CardButton from '../CardButton/CardButton';
 
-const JournalAddButton = (props) => {
+const JournalAddButton = () => {
 
-    const{children} = props;
 
     return (
-        <CardButton>
-            
+        <CardButton className="journal-add">
+                Add New Notice
         </CardButton>
     )
 }

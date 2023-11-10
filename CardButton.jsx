@@ -1,12 +1,14 @@
 import './CardButton.css'
 
 
-const CardButton = (props) => {
+const CardButton = ({children, className}) => {
 
-    const{children} = props;
+    const cl = 'card-button' + (className ? ' ' + className : '');
 
     return (
-        <button className='card-button'>{children}</button>
+        <button className={cl}>
+            {children}
+        </button>
     )
 }
 export default CardButton;
