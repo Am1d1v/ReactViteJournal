@@ -4,7 +4,7 @@ const Header = () => {
 
 
     return (
-        <>Logo</>
+        <img className='logo' src="/logo.svg" alt="Journal Logo" />
     )
 }
 export default Header;
