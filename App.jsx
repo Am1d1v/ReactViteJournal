@@ -7,6 +7,7 @@ import RightPanel from './layouts/RightPanel/RightPanel'
 import Header from './components/Header/Header'
 import JournalList from './components/JournalList/JournalList'
 import JournalAddButton from './components/JournalAddButton/JournalAddButton';
+import JournalForm from './components/JournalForm/JournalForm';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     }
   ];
 
+
   return (
     <div className='app'>
       <LeftPanel>
@@ -40,7 +42,7 @@ function App() {
       </LeftPanel>
 
       <RightPanel>
-        RightPanel Content
+        <JournalForm />
       </RightPanel>
     </div>
   )
