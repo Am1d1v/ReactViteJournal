@@ -2,14 +2,16 @@ import { useState } from 'react';
 import './JournalForm.css';
 import Button from '../Button/Button';
 
-const JournalForm = () => {
+const JournalForm = ({onSubmit}) => {
 
   const [inputData, setInputData] = useState('');
 
-  const inputChange = (event) => {
+    // inputData change state  / Text Input
+    const inputChange = (event) => {
+    
       setInputData(event.target.value);
-      console.log(inputData)
-  }
+      //console.log(inputData)
+    }
 
     // Add New Journal Record
     const addJournalItem = (e) => {
@@ -20,17 +22,18 @@ const JournalForm = () => {
         // Getting Entries from fromData
         const formProps = Object.fromEntries(formData);
 
-        
-        console.log(formProps)
+        //console.log(formProps);
+        onSubmit(formProps);
+
     }
 
     return (
             <form className='journal-form' onSubmit={addJournalItem}>
-                <input type='text' name='title'/>
-                <input type='date' name='date' />
-                <input type='text' name='tag' value={inputData} onChange={inputChange} />
-                <textarea name="post" id="" cols="30" rows="10"></textarea>
-                <Button text='Save'/>
+                <input type='text' name='title' placeholder='Title'/>
+                <input type='date' name='date' placeholder='Date'/>
+                <input type='text' name='tag' placeholder='Text' value={inputData} onChange={inputChange} />
+                <textarea name="text" placeholder='Descripstion' id="" cols="30" rows="10"></textarea>
+                <Button text='Save' />
             </form>  
     )
 }
