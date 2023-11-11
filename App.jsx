@@ -1,5 +1,4 @@
 import './App.css'
-import Button from './components/Button/Button';
 import JournalItem from './components/JournalItem/JournalItem';
 import CardButton from './components/CardButton/CardButton';
 import LeftPanel from './layouts/LeftPanel/LeftPanel';
@@ -12,16 +11,16 @@ import { useState } from 'react';
 
 // Initial Journal data
 const INITIAL_DATA = [
-  {
-    title: 'Title1',
-    text: 'some text1',
-    date: new Date()
-  },
-  {
-    title: 'Title2',
-    text: 'some text2',
-    date: new Date()
-  }
+  // {
+  //   title: 'Title1',
+  //   text: 'some text1',
+  //   date: new Date()
+  // },
+  // {
+  //   title: 'Title2',
+  //   text: 'some text2',
+  //   date: new Date()
+  // }
 ];
 
 function App() {
@@ -42,11 +41,12 @@ function App() {
 
   return (
     <div className='app'>
+      {items.length}
       <LeftPanel>
         <Header />
         <JournalAddButton />
         <JournalList>
-          {items.map((el, index) => {return(
+          {items.length === 0 ? <p>No Notes</p> : items.map((el, index) => {return(
             <CardButton key={index}>
               <JournalItem 
                 title={el.title} 

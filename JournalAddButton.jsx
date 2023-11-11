@@ -6,7 +6,7 @@ const JournalAddButton = () => {
 
     return (
         <CardButton className="journal-add">
-                + Add New Notice
+                + Add New Note
         </CardButton>
     )
 }
