@@ -46,15 +46,15 @@ function App() {
         <Header />
         <JournalAddButton />
         <JournalList>
-          {items.map(el => (
-            <CardButton >
+          {items.map((el, index) => {return(
+            <CardButton key={index}>
               <JournalItem 
                 title={el.title} 
                 text={el.text} 
                 date={el.date}
                 />
             </CardButton>
-          ))}
+          )})}
         </JournalList>
       </LeftPanel>
 
