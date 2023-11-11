@@ -21,8 +21,11 @@ const JournalForm = ({onSubmit}) => {
 
         // Getting Entries from fromData
         const formProps = Object.fromEntries(formData);
-
         //console.log(formProps);
+
+        // Invalid time value fix
+        //console.log(formProps.date === '');
+        formProps.date === '' ? formProps.date = new Date() : new Date()
         onSubmit(formProps);
 
     }
@@ -30,9 +33,9 @@ const JournalForm = ({onSubmit}) => {
     return (
             <form className='journal-form' onSubmit={addJournalItem}>
                 <input type='text' name='title' placeholder='Title'/>
-                <input type='date' name='date' placeholder='Date'/>
+                <input type='date' name='date' />
                 <input type='text' name='tag' placeholder='Text' value={inputData} onChange={inputChange} />
-                <textarea name="text" placeholder='Descripstion' id="" cols="30" rows="10"></textarea>
+                <textarea name="text" placeholder='Description' id="" cols="30" rows="10"></textarea>
                 <Button text='Save' />
             </form>  
     )

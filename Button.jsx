@@ -2,11 +2,11 @@ import { useState } from 'react'
 import './Button.css'
 
 
-const Button = ({text}) => {
+const Button = ({text, onClick}) => {
 
 
     return (
-        <button className='button accent'>{text}</button>
+        <button className='button accent' onClick={onClick}>{text}</button>
     )
 }
 export default Button;
