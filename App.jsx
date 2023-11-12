@@ -7,26 +7,27 @@ import Header from './components/Header/Header'
 import JournalList from './components/JournalList/JournalList'
 import JournalAddButton from './components/JournalAddButton/JournalAddButton';
 import JournalForm from './components/JournalForm/JournalForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Initial Journal data
-const INITIAL_DATA = [
-  // {
-  //   title: 'Title1',
-  //   text: 'some text1',
-  //   date: new Date()
-  // },
-  // {
-  //   title: 'Title2',
-  //   text: 'some text2',
-  //   date: new Date()
-  // }
-];
+//const INITIAL_DATA = [];
 
 function App() {
 
   // Notes in the journal 
-  const [items, setItems] = useState(INITIAL_DATA);
+  const [items, setItems] = useState([]);
+
+
+  // Add new notes to localStorage using useEffect()
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('data'));
+
+    if(data){
+      setItems(data.map(item => ({
+        ...item,
+      }))
+    )}
+  }, []);
 
 
   // Add new Items(notes) to the Journal
@@ -41,7 +42,6 @@ function App() {
 
   return (
     <div className='app'>
-      {items.length}
       <LeftPanel>
         <Header />
         <JournalAddButton />
