@@ -64,7 +64,7 @@ const JournalForm = ({onSubmit}) => {
                 <input type='text' 
                        name='title' 
                        placeholder='Title' 
-                       style={{border: formValidState.title ? 'none' : '2px solid red'}}
+                       className={`input ${formValidState.title ? '' : 'invalid'}`}
                        />
                 <input type='date' 
                        name='date' 
@@ -79,7 +79,7 @@ const JournalForm = ({onSubmit}) => {
                           id="" 
                           cols="30" 
                           rows="10"
-                          style={{border: formValidState.post ? 'none' : '2px solid red'}}
+                          className={`input ${formValidState.post ? '' : 'invalid'}`}
                           ></textarea>
                 <Button text='Save' />
             </form>  

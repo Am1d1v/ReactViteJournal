@@ -5,3 +5,11 @@
     flex-direction: column;
     gap: 30px;
 }
+
+.invalid{
+    border: 2px solid red;
+    background: #922828;
+}
+
+
+
