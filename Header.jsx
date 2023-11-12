@@ -1,10 +1,13 @@
-import './Header.css';
+import styles from './Header.module.css';
 
 const Header = () => {
 
 
     return (
-        <img className='logo' src="/logo.svg" alt="Journal Logo" />
+        <img 
+            className={styles.logo} 
+            src="/logo.svg" 
+            alt="Journal Logo" />
     )
 }
 export default Header;

@@ -1,0 +1,15 @@
+
+
+.journal-form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.invalid{
+    border: 2px solid red;
+    background: #ee9c9c;
+}
+
+
+
