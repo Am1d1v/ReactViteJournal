@@ -61,19 +61,38 @@ const JournalForm = ({onSubmit}) => {
 
     return (
             <form className={styles['journal-form']} onSubmit={addJournalItem}>
-                <input type='text' 
-                       name='title' 
-                       placeholder='Title' 
-                       className={`${styles['input']} ${formValidState.title ? '' : styles['invalid']}`}
-                       />
-                <input type='date' 
-                       name='date' 
-                       />
-                <input type='text' 
+                <div>
+                  <input type='text' 
+                         name='title' 
+                         placeholder='Title' 
+                         className={`${styles['input-title']} ${formValidState.title ? '' : styles['invalid']}`}
+                    />
+                </div>
+                <div className={styles['form-row']}>
+                  <label htmlFor="date" className={styles['form-label']}>
+                    <img src="Calendar.svg" alt="CalendarIcon" />
+                    <span>Date</span>
+                  </label>
+                  <input type='date' 
+                         name='date' 
+                         id='date'
+                  />
+                </div>
+
+                <div className={styles['form-row']}>
+                  <label htmlFor="tag" className={styles['form-label']}>
+                    <img src="Folder.svg" alt="FolderIcon" />
+                    <span>Cathegory</span>
+                  </label>
+                  <input type='text' 
                        name='tag' 
                        placeholder='Text' 
                        value={inputData} onChange={inputChange}
-                       />
+                       id='tag'
+                  />
+                </div>
+
+
                 <textarea name="post" 
                           placeholder='Description' 
                           id="" 

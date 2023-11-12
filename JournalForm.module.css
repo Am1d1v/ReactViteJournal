@@ -11,5 +11,39 @@
     background: #ee9c9c;
 }
 
+.input-title{
+    border: none;
+    border-bottom: 1px solid #fff ;
+    background: none;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: normal;
+    color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.form-label{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-row{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
