@@ -10,7 +10,7 @@ const JournalForm = ({onSubmit}) => {
     // Checking form validation
     const [formValidState, setFormValidState] = useState({
       title: true,
-      text: true, 
+      post: true, 
     });
 
     // inputData change state  / Text Input change state
@@ -44,11 +44,11 @@ const JournalForm = ({onSubmit}) => {
           setFormValidState(state => ({...state, title: true}));
         }
 
-        if(!formProps.text.trim().length){
-          setFormValidState(state => ({...state, text: false}));
+        if(!formProps.post.trim().length){
+          setFormValidState(state => ({...state, post: false}));
           isFormValid = false;
         } else {
-          setFormValidState(state => ({...state, text: true}));
+          setFormValidState(state => ({...state, post: true}));
         }
 
         // If isFormValid false(title or text is missing), user cannot submit his note 
@@ -67,19 +67,19 @@ const JournalForm = ({onSubmit}) => {
                        style={{border: formValidState.title ? 'none' : '2px solid red'}}
                        />
                 <input type='date' 
-                       name='date' />
+                       name='date' 
+                       />
                 <input type='text' 
                        name='tag' 
                        placeholder='Text' 
                        value={inputData} onChange={inputChange}
-                       style={{border: formValidState.text ? 'none' : '2px solid red'}} 
                        />
-                <textarea name="text" 
+                <textarea name="post" 
                           placeholder='Description' 
                           id="" 
                           cols="30" 
                           rows="10"
-                          style={{border: formValidState.text ? 'none' : '2px solid red'}}
+                          style={{border: formValidState.post ? 'none' : '2px solid red'}}
                           ></textarea>
                 <Button text='Save' />
             </form>  
