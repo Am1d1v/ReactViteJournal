@@ -32,7 +32,13 @@ const JournalForm = ({onSubmit}) => {
 
         // Invalid time value fix
         //console.log(formProps.date === '');
-        formProps.date === '' ? formProps.date = new Date() : new Date()
+        // const date = formProps.date;
+        // const formatedDate =  new Intl.DateTimeFormat('ru-RU').format(date);
+        // formProps.date === '' ? formProps.date = new Date() : new Date()
+
+        const date = new Intl.DateTimeFormat('ru-RU').format(new Date());
+        formProps.date === '' ? formProps.date = date : date
+        //console.log(formProps.date, formProps)
 
         // Checking form validation
         let isFormValid = true;

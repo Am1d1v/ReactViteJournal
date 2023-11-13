@@ -18,7 +18,7 @@ function App() {
   const [items, setItems] = useState([]);
 
 
-  // Add new notes to localStorage using useEffect()
+  // Save initial 'data' in localStorage
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('data'));
 
@@ -30,9 +30,15 @@ function App() {
   }, []);
 
 
-  // useEffect for items
+  // useEffect for items (Updates items data)
   useEffect(() => {
-    console.log(items);
+
+    // Add new notes to localStorage using useEffect()
+    if(items.length){
+      localStorage.setItem('data', JSON.stringify(items));
+    }
+
+    //console.log(items);
   }, [items]);
 
 
@@ -41,7 +47,7 @@ function App() {
     setItems(previousItems => [{
       post: item.post,
       title: item.title,
-      date: new Date(item.date)
+      date: item.date
     }, ...previousItems])
   }
 
