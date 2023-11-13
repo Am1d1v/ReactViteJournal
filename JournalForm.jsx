@@ -24,11 +24,19 @@ const JournalForm = ({onSubmit}) => {
     }
 
     // Changing post(description) or title state after 2 seconds
+    let timerId;
     useEffect(() => {
+      
       if(!formValidState.post || !formValidState.title){
-        setTimeout(() => {
+        timerId = setTimeout(() => {
+          console.log('Cleared')
           setFormValidState(INITIAL_STATE)
         }, 2000);
+      }
+
+      // Clear useEffect
+      return () => {
+        clearTimeout(timerId);
       }
     }, [formValidState]);
 
