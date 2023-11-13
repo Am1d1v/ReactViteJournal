@@ -6,7 +6,7 @@ import { INITIAL_STATE, formReducer } from './JournalForm.state';
 const JournalForm = ({onSubmit}) => {
 
     const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
-    const {isValid} = formState;
+    const {isValid, isFormReadyToSubmit, values} = formState;
 
     // Text Input 
     const [inputData, setInputData] = useState('');
@@ -41,6 +41,7 @@ const JournalForm = ({onSubmit}) => {
       }
     }, [isValid]);
 
+
     // Add New Journal Record
     const addJournalItem = (e) => {
         e.preventDefault();
@@ -62,28 +63,39 @@ const JournalForm = ({onSubmit}) => {
         //console.log(formProps.date, formProps)
 
         // Checking form validation
-        let isFormValid = true;
+        //let isFormValid = true;
 
-        if(!formProps.title.trim().length){
-          setFormValidState(state => ({...state, title: false}));
-          formState.isValid.title = false;
-        } else {
-          setFormValidState(state => ({...state, title: true}));
-        }
+        // if(!formProps.title.trim().length){
+        //   setFormValidState(state => ({...state, title: false}));
+        //   formState.isValid.title = false;
+        // } else {
+        //   setFormValidState(state => ({...state, title: true}));
+        // }
 
-        if(!formProps.post.trim().length){
-          setFormValidState(state => ({...state, post: false}));
-          formState.isValid.post = false;
-        } else {
-          setFormValidState(state => ({...state, post: true}));
-        }
+        // if(!formProps.post.trim().length){
+        //   setFormValidState(state => ({...state, post: false}));
+        //   formState.isValid.post = false;
+        // } else {
+        //   setFormValidState(state => ({...state, post: true}));
+        // }
 
-        // If isFormValid false(title or text is missing), user cannot submit his note 
-        if(!isFormValid){
-          return;
-        }
+        // // If isFormValid false(title or text is missing), user cannot submit his note 
+        // if(!isFormValid){
+        //   return;
+        // }
 
-        onSubmit(formProps);
+        // useEffect for isFormReadyToSubmit
+          useEffect(() => {
+            if(isFormReadyToSubmit){
+              onSubmit(values)
+            }
+          }, [isFormReadyToSubmit])
+
+
+        // Dispatch call   
+        dispatchForm({type: 'SUBMIT', payload: formProps})
+
+        //onSubmit(formProps);
     }
 
     return (
@@ -92,7 +104,7 @@ const JournalForm = ({onSubmit}) => {
                   <input type='text' 
                          name='title' 
                          placeholder='Title' 
-                         className={`${styles['input-title']} ${formValidState.title ? '' : styles['invalid']}`}
+                         className={`${styles['input-title']} ${isValid.title ? '' : styles['invalid']}`}
                     />
                 </div>
                 <div className={styles['form-row']}>
@@ -120,13 +132,12 @@ const JournalForm = ({onSubmit}) => {
                   />
                 </div>
 
-
                 <textarea name="post" 
                           placeholder='Description' 
                           id="" 
                           cols="30" 
                           rows="10"
-                          className={`${styles['input']} ${formValidState.post ? '' : styles['invalid']}`}
+                          className={`${styles['input']} ${isValid.post ? '' : styles['invalid']}`}
                           ></textarea>
                 <Button text='Save' />
             </form>  
