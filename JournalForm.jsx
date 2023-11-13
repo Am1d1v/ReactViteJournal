@@ -1,20 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import styles from './JournalForm.module.css';
 import Button from '../Button/Button';
+import { INITIAL_STATE, formReducer } from './JournalForm.state';
 
 const JournalForm = ({onSubmit}) => {
+
+    const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
+    const {isValid} = formState;
 
     // Text Input 
     const [inputData, setInputData] = useState('');
 
     // Initial Data State
-    const INITIAL_STATE = {
-      title: true,
-      post: true, 
-    };
-
+    // const INITIAL_STATE = {
+    //   title: true,
+    //   post: true, 
+    // };
     // Checking form validation
-    const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+    //const [formValidState, setFormValidState] = useState(INITIAL_STATE);
 
     // inputData change state  / Text Input change state
     const inputChange = (event) => {
@@ -24,21 +27,19 @@ const JournalForm = ({onSubmit}) => {
     }
 
     // Changing post(description) or title state after 2 seconds
-    let timerId;
     useEffect(() => {
-      
-      if(!formValidState.post || !formValidState.title){
+      let timerId;
+      if(!formState.isValid.post || !formState.isValid.title){
         timerId = setTimeout(() => {
-          console.log('Cleared')
-          setFormValidState(INITIAL_STATE)
-        }, 2000);
+          dispatchForm({type: 'RESET_VALIDITY'})
+        }, 2000); 
       }
 
       // Clear useEffect
       return () => {
         clearTimeout(timerId);
       }
-    }, [formValidState]);
+    }, [isValid]);
 
     // Add New Journal Record
     const addJournalItem = (e) => {
@@ -65,14 +66,14 @@ const JournalForm = ({onSubmit}) => {
 
         if(!formProps.title.trim().length){
           setFormValidState(state => ({...state, title: false}));
-          isFormValid = false;
+          formState.isValid.title = false;
         } else {
           setFormValidState(state => ({...state, title: true}));
         }
 
         if(!formProps.post.trim().length){
           setFormValidState(state => ({...state, post: false}));
-          isFormValid = false;
+          formState.isValid.post = false;
         } else {
           setFormValidState(state => ({...state, post: true}));
         }
