@@ -6,11 +6,6 @@
     gap: 30px;
 }
 
-.invalid{
-    border: 2px solid red;
-    background: #ee9c9c;
-}
-
 .input-title{
     border: none;
     border-bottom: 1px solid #fff ;
@@ -26,6 +21,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    min-width: 150px
 }
 
 .form-row{
@@ -34,9 +30,21 @@
     gap: 20px;
 }
 
+.input{
+    border: none;
+    border-bottom: 1px solid #fff ;
+    background: none;
+    font-size: 15px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: 600;
+    color: #fff;
+}
 
-
-
+.invalid{
+    border: 2px solid red;
+    background: #ee9c9c;
+}
 
 
 

@@ -85,10 +85,11 @@ const JournalForm = ({onSubmit}) => {
                     <span>Cathegory</span>
                   </label>
                   <input type='text' 
-                       name='tag' 
-                       placeholder='Text' 
-                       value={inputData} onChange={inputChange}
-                       id='tag'
+                         name='tag' 
+                         placeholder='Text' 
+                         value={inputData} onChange={inputChange}
+                         id='tag'
+                         className={`${styles['input']}`}
                   />
                 </div>
 

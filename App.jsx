@@ -30,10 +30,16 @@ function App() {
   }, []);
 
 
+  // useEffect for items
+  useEffect(() => {
+    console.log(items);
+  }, [items]);
+
+
   // Add new Items(notes) to the Journal
   const addItem = (item) => {
     setItems(previousItems => [{
-      text: item.text,
+      post: item.post,
       title: item.title,
       date: new Date(item.date)
     }, ...previousItems])
