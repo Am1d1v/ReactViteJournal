@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import styles from './JournalForm.module.css';
 import Button from '../Button/Button';
 import { INITIAL_STATE, formReducer } from './JournalForm.state';
@@ -22,6 +22,10 @@ const JournalForm = ({onSubmit}) => {
         clearTimeout(timerId);
       }
     }, [isValid]);
+
+    // References
+    const titleRef = useRef();
+    const postRef = useRef();
 
 
     // useEffect for isFormReadyToSubmit, is isFormReadyToSubmit == true, we can submit form
@@ -49,6 +53,7 @@ const JournalForm = ({onSubmit}) => {
         dispatchForm({type: 'SUBMIT'})
     }
 
+    // Controll input fields
     const onChange = (event) => {
       dispatchForm({type: 'SET_VALUE', payload: {[event.target.name]: event.target.value}})
     }
@@ -62,6 +67,7 @@ const JournalForm = ({onSubmit}) => {
                          className={`${styles['input-title']} ${isValid.title ? '' : styles['invalid']}`}
                          value={values.title}
                          onChange={onChange}
+                         ref={titleRef}
                     />
                 </div>
                 <div className={styles['form-row']}>
@@ -99,6 +105,7 @@ const JournalForm = ({onSubmit}) => {
                           className={`${styles['input']} ${isValid.post ? '' : styles['invalid']}`}
                           value={values.post}
                           onChange={onChange}
+                          ref={postRef}
                           ></textarea>
                 <Button text='Save' />
             </form>  
