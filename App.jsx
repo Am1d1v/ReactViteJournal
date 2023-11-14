@@ -32,12 +32,10 @@ function App() {
 
   // useEffect for items (Updates items data)
   useEffect(() => {
-
     // Add new notes to localStorage using useEffect()
     if(items.length){
       localStorage.setItem('data', JSON.stringify(items));
     }
-
     //console.log(items);
   }, [items]);
 
@@ -62,7 +60,7 @@ function App() {
             <CardButton key={index}>
               <JournalItem 
                 title={el.title} 
-                text={el.text} 
+                post={el.post} 
                 date={el.date}
                 />
             </CardButton>

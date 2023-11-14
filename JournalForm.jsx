@@ -8,10 +8,25 @@ const JournalForm = ({onSubmit}) => {
     const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
     const {isValid, isFormReadyToSubmit, values} = formState;
 
+  // If title or post input form are empty this function will focus on empty input fields  
+  const focusError = (isValid) => {
+      switch(true){
+        case !isValid.title:
+          titleRef.current.focus();
+          break;
+        case !isValid.post:
+          postRef.current.focus();
+          break; 
+      }
+  };
+
     // Changing post(description) or title state after 2 seconds
     useEffect(() => {
       let timerId;
       if(!formState.isValid.post || !formState.isValid.title){
+
+        focusError(isValid)
+
         timerId = setTimeout(() => {
           dispatchForm({type: 'RESET_VALIDITY'})
         }, 2000); 
@@ -47,7 +62,7 @@ const JournalForm = ({onSubmit}) => {
         const formProps = Object.fromEntries(formData);
         
         const date = new Intl.DateTimeFormat('ru-RU').format(new Date());
-        formProps.date === '' ? formProps.date = date : date
+        formProps.date === '' || undefined || null ? formProps.date = date : date
 
         // Dispatch call   
         dispatchForm({type: 'SUBMIT'})

@@ -4,12 +4,11 @@ export const INITIAL_STATE = {
     isValid:{
         post: true,
         title: true,
-        date: true
+        date: new Date()
     },
     values:{
         post: '',
         title: '',
-        tag: '',
         date: ''
     },
     isFormReadyToSubmit: false    
