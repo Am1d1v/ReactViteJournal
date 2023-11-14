@@ -8,6 +8,9 @@ const JournalForm = ({onSubmit}) => {
     const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
     const {isValid, isFormReadyToSubmit, values} = formState;
 
+    // Date formated
+    const date = new Intl.DateTimeFormat('ru-RU').format(new Date());
+        
   // If title or post input form are empty this function will focus on empty input fields  
   const focusError = (isValid) => {
       switch(true){
@@ -46,7 +49,7 @@ const JournalForm = ({onSubmit}) => {
     // useEffect for isFormReadyToSubmit, is isFormReadyToSubmit == true, we can submit form
     useEffect(() => {
       if(isFormReadyToSubmit){
-        onSubmit(values);
+        onSubmit(values, values.date = date);
         // Call clear forms
         dispatchForm({type: 'CLEAR'})
       }
