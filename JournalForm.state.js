@@ -6,8 +6,8 @@ export const INITIAL_STATE = {
         title: true
     },
     values:{
-        post: undefined,
-        title: undefined
+        post: '',
+        title: ''
     },
     isFormReadyToSubmit: false    
 };
@@ -15,7 +15,11 @@ export const INITIAL_STATE = {
 // useReducer function
 export function formReducer(state, action){
     switch(action.type){
+        case 'CLEAR':
+            // Clear forms
+            return {...state, values: INITIAL_STATE.isValid};
         case 'RESET_VALIDITY':
+            // form validation now is true
             return {...state, isValid: INITIAL_STATE.isValid};
         case 'SUBMIT': {
             const postValidity = action.payload.post.trim().length

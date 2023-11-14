@@ -34,10 +34,12 @@ const JournalForm = ({onSubmit}) => {
     }, [isValid]);
 
 
-    // useEffect for isFormReadyToSubmit
+    // useEffect for isFormReadyToSubmit, is isFormReadyToSubmit == true, we can submit form
     useEffect(() => {
       if(isFormReadyToSubmit){
-        onSubmit(values)
+        onSubmit(values);
+        // Call clear forms
+        dispatchForm({type: 'CLEAR'})
       }
     }, [isFormReadyToSubmit])
 
