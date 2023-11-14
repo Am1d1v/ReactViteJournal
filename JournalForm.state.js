@@ -3,11 +3,14 @@
 export const INITIAL_STATE = {
     isValid:{
         post: true,
-        title: true
+        title: true,
+        date: true
     },
     values:{
         post: '',
-        title: ''
+        title: '',
+        tag: '',
+        date: ''
     },
     isFormReadyToSubmit: false    
 };
@@ -15,16 +18,20 @@ export const INITIAL_STATE = {
 // useReducer function
 export function formReducer(state, action){
     switch(action.type){
+        case 'SET_VALUE':
+            // Set values for input forms
+            return {...state, values: {...state.values, ...action.payload}};
         case 'CLEAR':
-            // Clear forms
-            return {...state, values: INITIAL_STATE.isValid};
+            // Clear input forms
+            return {...state, values: INITIAL_STATE.values};
         case 'RESET_VALIDITY':
-            // form validation now is true
+            // Input form validation now is true
             return {...state, isValid: INITIAL_STATE.isValid};
         case 'SUBMIT': {
-            const postValidity = action.payload.post.trim().length
-            const titleValidity = action.payload.title.trim().length
-            return {values: action.payload,
+            const postValidity = state.values.post.trim().length
+            const titleValidity = state.values.title.trim().length
+            return {
+                    ...state,
                     isValid: {
                         post: postValidity,
                         title: titleValidity

@@ -8,16 +8,6 @@ const JournalForm = ({onSubmit}) => {
     const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
     const {isValid, isFormReadyToSubmit, values} = formState;
 
-    // Text Input 
-    const [inputData, setInputData] = useState('');
-
-    // inputData change state  / Text Input change state
-    const inputChange = (event) => {
-    
-      setInputData(event.target.value);
-      //console.log(inputData)
-    }
-
     // Changing post(description) or title state after 2 seconds
     useEffect(() => {
       let timerId;
@@ -56,8 +46,11 @@ const JournalForm = ({onSubmit}) => {
         formProps.date === '' ? formProps.date = date : date
 
         // Dispatch call   
-        dispatchForm({type: 'SUBMIT', payload: formProps})
+        dispatchForm({type: 'SUBMIT'})
+    }
 
+    const onChange = (event) => {
+      dispatchForm({type: 'SET_VALUE', payload: {[event.target.name]: event.target.value}})
     }
 
     return (
@@ -67,6 +60,8 @@ const JournalForm = ({onSubmit}) => {
                          name='title' 
                          placeholder='Title' 
                          className={`${styles['input-title']} ${isValid.title ? '' : styles['invalid']}`}
+                         value={values.title}
+                         onChange={onChange}
                     />
                 </div>
                 <div className={styles['form-row']}>
@@ -77,6 +72,7 @@ const JournalForm = ({onSubmit}) => {
                   <input type='date' 
                          name='date' 
                          id='date'
+                         onChange={onChange}
                   />
                 </div>
 
@@ -87,19 +83,22 @@ const JournalForm = ({onSubmit}) => {
                   </label>
                   <input type='text' 
                          name='tag' 
-                         placeholder='Text' 
-                         value={inputData} onChange={inputChange}
+                         placeholder='Text'  
                          id='tag'
                          className={`${styles['input']}`}
+                         value={values.tag}
+                         onChange={onChange} 
                   />
                 </div>
 
                 <textarea name="post" 
-                          placeholder='Description' 
+                          placeholder='Post' 
                           id="" 
                           cols="30" 
                           rows="10"
                           className={`${styles['input']} ${isValid.post ? '' : styles['invalid']}`}
+                          value={values.post}
+                          onChange={onChange}
                           ></textarea>
                 <Button text='Save' />
             </form>  
